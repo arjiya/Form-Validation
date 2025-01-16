@@ -56,8 +56,8 @@ form.addEventListener('submit',(e)=>{
         confirmpassword_match.style.color="red";
     }else if(confirmpassword.value==='' || confirmpassword.value==null){
         e.preventDefault();
-        confirmpassword_error.innerHTML="password required"
-        confirmpassword_error.style.color="red";
+        confirmpassword_match.innerHTML="password required"
+        confirmpassword_match.style.color="red";
 
     }
     
