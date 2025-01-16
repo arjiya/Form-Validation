@@ -22,7 +22,7 @@ form.addEventListener('submit', (e) => {
     var email_check = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let isValid = true;  
 
-   
+
     if (name.value === '' || name.value == null) {
         name_error.innerHTML = "Name is required";
         name_error.style.color = "red";
@@ -31,7 +31,7 @@ form.addEventListener('submit', (e) => {
         name_error.innerHTML = '';
     }
 
- 
+   
     if (!email.value.match(email_check)) {
         email_error.innerHTML = "Valid Email is required";
         email_error.style.color = "red";
@@ -39,6 +39,7 @@ form.addEventListener('submit', (e) => {
     } else {
         email_error.innerHTML = '';
     }
+
 
     if (password.value === '' || password.value == null) {
         password_error.innerHTML = "Password is required";
@@ -63,10 +64,12 @@ form.addEventListener('submit', (e) => {
         confirmpassword_match.style.color = "green";
     }
 
+   
     if (isValid) {
         popup.style.display = 'block';
     }
 });
+
 
 togglePassword.addEventListener('click', () => {
     const isPassword = passwordInput.type === 'password';
@@ -74,11 +77,13 @@ togglePassword.addEventListener('click', () => {
     togglePassword.textContent = isPassword ? 'Hide' : 'Show';
 });
 
+
 toggleconfirmPassword.addEventListener('click', () => {
     const isConfirmPassword = confirmpasswordInput.type === 'password';
     confirmpasswordInput.type = isConfirmPassword ? 'text' : 'password';
     toggleconfirmPassword.textContent = isConfirmPassword ? 'Hide' : 'Show';
 });
+
 
 okButton.addEventListener('click', () => {
     popup.style.display = 'none';
