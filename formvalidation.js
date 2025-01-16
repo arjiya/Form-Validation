@@ -22,8 +22,8 @@ form.addEventListener('submit', (e) => {
     var email_check = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let isValid = true;  
 
-
-    if (name.value === '' || name.value == null) {
+ 
+    if (name.value === '' || name.value == null) { 
         name_error.innerHTML = "Name is required";
         name_error.style.color = "red";
         isValid = false;
@@ -31,7 +31,6 @@ form.addEventListener('submit', (e) => {
         name_error.innerHTML = '';
     }
 
-   
     if (!email.value.match(email_check)) {
         email_error.innerHTML = "Valid Email is required";
         email_error.style.color = "red";
@@ -40,7 +39,6 @@ form.addEventListener('submit', (e) => {
         email_error.innerHTML = '';
     }
 
-
     if (password.value === '' || password.value == null) {
         password_error.innerHTML = "Password is required";
         password_error.style.color = "red";
@@ -48,7 +46,6 @@ form.addEventListener('submit', (e) => {
     } else {
         password_error.innerHTML = '';
     }
-
 
     if (confirmpassword.value === '' || confirmpassword.value == null) {
         confirmpassword_error.innerHTML = "Confirm Password is required";
@@ -64,30 +61,29 @@ form.addEventListener('submit', (e) => {
         confirmpassword_match.style.color = "green";
     }
 
-   
+
     if (isValid) {
         popup.style.display = 'block';
     }
 });
 
 
-togglePassword.addEventListener('click', () => {
+togglePassword.addEventListener('click', (e) => {
     const isPassword = passwordInput.type === 'password';
     passwordInput.type = isPassword ? 'text' : 'password';
     togglePassword.textContent = isPassword ? 'Hide' : 'Show';
+    e.stopPropagation(); 
 });
 
-
-toggleconfirmPassword.addEventListener('click', () => {
+toggleconfirmPassword.addEventListener('click', (e) => {
     const isConfirmPassword = confirmpasswordInput.type === 'password';
     confirmpasswordInput.type = isConfirmPassword ? 'text' : 'password';
     toggleconfirmPassword.textContent = isConfirmPassword ? 'Hide' : 'Show';
+    e.stopPropagation(); 
 });
-
 
 okButton.addEventListener('click', () => {
     popup.style.display = 'none';
 });
-
 
 popup.style.display = 'none';
