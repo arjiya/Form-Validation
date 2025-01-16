@@ -1,101 +1,88 @@
-const name=document.getElementById('name');
-
-const email=document.getElementById('email');
-
-const password=document.getElementById('password');
-const passwordInput=document.getElementById('password');
-const togglePassword=document.getElementById('togglePassword');
-
-const confirmpasswordInput=document.getElementById('confirmpassword');
-const toggleconfirmPassword=document.getElementById('toggleconfirmPassword');
-
-const confirmpassword=document.getElementById('confirmpassword');
-
-const form=document.getElementById('form');
-
-const name_error=document.getElementById('name_error');
-
-const email_error=document.getElementById('email_error');
-
-const password_error=document.getElementById("password_error")
-
-const confirmpassword_error=document.getElementById("confirmpassword_error")
-
-const confirmpassword_match=document.getElementById("confirmpassword_match")
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const passwordInput = document.getElementById('password');
+const togglePassword = document.getElementById('togglePassword');
+const confirmpasswordInput = document.getElementById('confirmpassword');
+const toggleconfirmPassword = document.getElementById('toggleconfirmPassword');
+const confirmpassword = document.getElementById('confirmpassword');
+const form = document.getElementById('form');
+const name_error = document.getElementById('name_error');
+const email_error = document.getElementById('email_error');
+const password_error = document.getElementById("password_error");
+const confirmpassword_error = document.getElementById("confirmpassword_error");
+const confirmpassword_match = document.getElementById("confirmpassword_match");
 const submitButton = document.querySelector('.btn');
 const popup = document.querySelector('.popup');
 const okButton = popup.querySelector('button');
 
-form.addEventListener('submit',(e)=>{
+form.addEventListener('submit', (e) => {
+    e.preventDefault();  
 
-    var email_check=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    if(name.value ==='' || name.value==null)
-        {
-        e.preventDefault();
-        name_error.innerHTML="Name is required";
-        name_error.style.color="red";
+    var email_check = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isValid = true;  
+
+   
+    if (name.value === '' || name.value == null) {
+        name_error.innerHTML = "Name is required";
+        name_error.style.color = "red";
+        isValid = false;
+    } else {
+        name_error.innerHTML = '';
     }
 
-    if(!email.value.match(email_check))
-    {
-        e.preventDefault();
-        email_error.innerHTML="Valid Email is required";
-        email_error.style.color="red";
+ 
+    if (!email.value.match(email_check)) {
+        email_error.innerHTML = "Valid Email is required";
+        email_error.style.color = "red";
+        isValid = false;
+    } else {
+        email_error.innerHTML = '';
     }
 
-    if(password.value==='' || password.value==null){
-        e.preventDefault();
-        password_error.innerHTML="password is required"
-        password_error.style.color="red";
+    if (password.value === '' || password.value == null) {
+        password_error.innerHTML = "Password is required";
+        password_error.style.color = "red";
+        isValid = false;
+    } else {
+        password_error.innerHTML = '';
     }
 
-    if(password.value !== confirmpassword.value ){
-        e.preventDefault();
-        confirmpassword_match.innerHTML="password doesnt match"
-        confirmpassword_match.style.color="red";
-    }else if(confirmpassword.value==='' || confirmpassword.value==null){
-        e.preventDefault();
-        confirmpassword_match.innerHTML="password required"
-        confirmpassword_match.style.color="red";
 
-    }
-    
-    else if (password.value==confirmpassword.value){
-         e.preventDefault();
-        confirmpassword_match.innerHTML="password match";
-        confirmpassword_match.style.color="green";
-      
-
+    if (confirmpassword.value === '' || confirmpassword.value == null) {
+        confirmpassword_error.innerHTML = "Confirm Password is required";
+        confirmpassword_error.style.color = "red";
+        isValid = false;
+    } else if (password.value !== confirmpassword.value) {
+        confirmpassword_match.innerHTML = "Passwords don't match";
+        confirmpassword_match.style.color = "red";
+        isValid = false;
+    } else {
+        confirmpassword_error.innerHTML = '';
+        confirmpassword_match.innerHTML = "Passwords match";
+        confirmpassword_match.style.color = "green";
     }
 
-    
+    if (isValid) {
+        popup.style.display = 'block';
+    }
 });
 
-togglePassword.addEventListener('click',()=>{
-    const isPassword=passwordInput.type==='password';
-    passwordInput.type=isPassword?'text':'password';
-    togglePassword.textContent=isPassword?'Hide':'Show';
+togglePassword.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    togglePassword.textContent = isPassword ? 'Hide' : 'Show';
 });
 
-toggleconfirmPassword.addEventListener('click',()=>{
-    const isconfirmPassword=confirmpasswordInput.type==='password';
-    confirmpasswordInput.type=isconfirmPassword?'text':'password';
-    toggleconfirmPassword.textContent=isconfirmPassword?'Hide':'Show';
+toggleconfirmPassword.addEventListener('click', () => {
+    const isConfirmPassword = confirmpasswordInput.type === 'password';
+    confirmpasswordInput.type = isConfirmPassword ? 'text' : 'password';
+    toggleconfirmPassword.textContent = isConfirmPassword ? 'Hide' : 'Show';
 });
 
-submitButton.addEventListener('click',() =>{
-    popup.style.display='block';
-});
 okButton.addEventListener('click', () => {
     popup.style.display = 'none';
-  });
-  
-  
-  popup.style.display = 'none';
+});
 
 
-
-
-
-  
+popup.style.display = 'none';
